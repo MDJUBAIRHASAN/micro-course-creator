@@ -3,6 +3,7 @@ import openai from "../../lib/openai";
 import { buildLessonPrompt } from "../../utils/prompt";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  console.log("API Key:", process.env.OPENAI_API_KEY);
   if (req.method !== "POST") return res.status(405).json({ error: "Only POST" });
 
   const { topic, lessonsCount } = req.body;
@@ -17,4 +18,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
   res.status(200).json({ lessons });
 }
-
